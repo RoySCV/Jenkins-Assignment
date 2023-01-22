@@ -16,13 +16,4 @@
 
 ## Run
 
-Execute the **seed-project-python-webapp** job
-
-
-### Jenkins Contianer ###
-## Add root permissions to jenkins user in the container:
-1. Connect to the container as root: 
-   docker exec -it -u root f55b381380a7 bash
-2. run the following commands:
-   - usermod -aG docker jenkins
-   - chmod 666 /var/run/docker.sock
+Execute deploy/deploy.bat
