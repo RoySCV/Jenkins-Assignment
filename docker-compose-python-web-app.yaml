@@ -1,0 +1,28 @@
+version: '3.0'
+
+networks:
+  python-web-app:
+    driver: bridge
+
+services:
+  python-web-app:
+    image: royscv/web-app:latest
+    container_name: python-web-app
+    restart: unless-stopped
+    networks:
+      - python-web-app
+    ports:
+      - 5000
+    volumes:
+      - '/var/run/docker.sock:/var/run/docker.sock'
+
+  nginx-reverse-proxy:
+    image: royscv/nginx-reverse-proxy:1.23.3-python-web-app
+    container_name: nginx-reverse-proxy
+    restart: unless-stopped
+    networks:
+      - python-web-app
+    ports:
+      - 80:80
+    depends_on: 
+      - python-web-app
